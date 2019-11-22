@@ -87,10 +87,10 @@ function renderCircles(circlesGroup, textGroup, newXScale, newYScale, chosenXaxi
 
     textGroup.transition()
         .duration(1000)
-        .attr("x", d => newXScale(d[chosenXAxis]) + (.0155*newXScale(1)))
-        .attr("y", d => newYScale(d[chosenYAxis]) + (.0155*newYScale(1)));
+        .attr("x", d => newXScale(d[chosenXAxis]) - 12)
+        .attr("y", d => newYScale(d[chosenYAxis]) + 5);
 
-  return circlesGroup;
+  return circlesGroup, textGroup;
 }
 
 // function used for updating circles group with new tooltip
@@ -277,7 +277,7 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
             xAxis = renderXAxes(xLinearScale, xAxis);
 
             // updates circles with new x values
-            circlesGroup = renderCircles(circlesGroup, textGroup, xLinearScale, yLinearScale, chosenXAxis, chosenYAxis);
+            circlesGroup, textGroup = renderCircles(circlesGroup, textGroup, xLinearScale, yLinearScale, chosenXAxis, chosenYAxis);
 
             // updates tooltips with new info
             circlesGroup = updateToolTip(chosenXAxis, chosenYAxis, circlesGroup);
@@ -341,7 +341,7 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
             yAxis = renderYAxes(yLinearScale, yAxis);
 
             // updates circles with new x values
-            circlesGroup = renderCircles(circlesGroup, textGroup, xLinearScale, yLinearScale, chosenXAxis, chosenYAxis);
+            circlesGroup, textGroup = renderCircles(circlesGroup, textGroup, xLinearScale, yLinearScale, chosenXAxis, chosenYAxis);
 
             // updates tooltips with new info
             circlesGroup = updateToolTip(chosenXAxis, chosenYAxis, circlesGroup);
