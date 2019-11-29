@@ -1,6 +1,18 @@
-// @TODO: YOUR CODE HERE!
-const svgWidth = 1280;
-const svgHeight = 667;
+async function makeResponsive() {
+
+    // if the SVG area isn't empty when the browser loads,
+    // remove it and replace it with a resized version of the chart
+    const svgArea = d3.select("body").select("svg");
+
+    // clear svg is not empty
+    if (!svgArea.empty()) {
+        svgArea.remove();
+    }
+
+    // SVG wrapper dimensions are determined by the current width and
+    // height of the browser window.
+    const svgWidth = window.innerWidth;
+    const svgHeight = window.innerHeight;
 
 const margin = {
   top: 20,
@@ -180,7 +192,7 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
         .data(healthData)
         .enter()
         .append("text")
-        .attr("x", d => xLinearScale(d[chosenXAxis] - .2))
+        .attr("x", d => xLinearScale(d[chosenXAxis] - .15))
         .attr("y", d => yLinearScale(d[chosenYAxis] - .3))
         .text(d => d.abbr)
 
@@ -383,3 +395,10 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
         }
     });
 })()
+}
+
+// When the browser loads, makeResponsive() is called.
+makeResponsive();
+
+// When the browser window is resized, makeResponsive() is called.
+d3.select(window).on("resize", makeResponsive);
