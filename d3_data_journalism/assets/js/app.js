@@ -154,7 +154,7 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
 
 // Retrieve data from the CSV file and execute everything below
 (async function(){
-    const healthData = await d3.csv("/assets/data/data.csv");
+    const healthData = await d3.csv("assets/js/data.csv");
 
     // parse data
     healthData.forEach(function(data) {
@@ -192,8 +192,8 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
         .data(healthData)
         .enter()
         .append("text")
-        .attr("x", d => xLinearScale(d[chosenXAxis] - .15))
-        .attr("y", d => yLinearScale(d[chosenYAxis] - .3))
+        .attr("x", d => xLinearScale(d[chosenXAxis] - .1))
+        .attr("y", d => yLinearScale(d[chosenYAxis] - .15))
         .text(d => d.abbr)
 
     let circlesGroup = chartGroup.selectAll("circle")
